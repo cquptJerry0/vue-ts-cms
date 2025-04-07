@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { AxiosInstance, InternalAxiosRequestConfig } from "axios";
+import type { AxiosInstance } from "axios";
 import type { HYRequestConfig } from "./type";
 
 // 拦截器: 蒙版Loading/token/修改配置
@@ -42,7 +42,7 @@ class HYRequest {
 
     // 针对特定的hyRequest实例添加拦截器
     this.instance.interceptors.request.use(
-      config.interceptors?.requestSuccessFn,
+      config.interceptors?.requestSuccessFn as any,
       config.interceptors?.requestFailureFn,
     );
     this.instance.interceptors.response.use(
@@ -56,7 +56,7 @@ class HYRequest {
   request<T = any>(config: HYRequestConfig<T>) {
     // 单次请求的成功拦截处理
     if (config.interceptors?.requestSuccessFn) {
-      config = config.interceptors.requestSuccessFn(config as any);
+      config = config.interceptors.requestSuccessFn(config);
     }
 
     // 返回Promise

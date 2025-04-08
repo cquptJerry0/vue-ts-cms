@@ -6,5 +6,9 @@ import "./assets/css/index.less";
 
 import ElementPlus from "element-plus";
 import "element-plus/dist/index.css";
-
-createApp(App).use(router).use(pinia).use(ElementPlus).mount("#app");
+import registerIcons from "./global/register-icons";
+const app = createApp(App);
+app.use(registerIcons);
+app.use(router);
+app.use(pinia);
+app.mount("#app");

@@ -39,6 +39,7 @@ const useLoginStore = defineStore("login", {
       const userMenusResult = await getUserMenusByRoleId(this.userInfo.role.id);
       const userMenus = userMenusResult.data;
       this.userMenus = userMenus;
+     
 
       // 4.进行本地缓存
       localCache.setCache("userMenus", userMenus);

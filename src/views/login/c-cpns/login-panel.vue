@@ -30,38 +30,37 @@
       </el-tabs>
     </div>
 
-
     <div class="controls">
       <el-checkbox v-model="isRemPwd" label="记住密码" size="large" />
       <el-link type="primary">忘记密码</el-link>
     </div>
-    <el-button class="login-btn" type="primary" size="large" @click="handleLoginBtnClick">立即登录</el-button>
+    <el-button class="login-btn" type="primary" size="large" @click="handleLoginBtnClick"
+      >立即登录</el-button
+    >
   </div>
 </template>
 
 <script setup lang="ts">
-import paneAccount from './pane-account.vue'
-import panePhone from './pane-phone.vue'
-import { ref, watch } from 'vue'
-import { localCache } from '@/utils/cache'
+import paneAccount from "./pane-account.vue";
+import panePhone from "./pane-phone.vue";
+import { ref, watch } from "vue";
+import { localCache } from "@/utils/cache";
 
-const activeName = ref('account')
-const isRemPwd = ref<boolean>(localCache.getCache('isRemPwd') ?? false)
+const activeName = ref("account");
+const isRemPwd = ref<boolean>(localCache.getCache("isRemPwd") ?? false);
 watch(isRemPwd, (newValue) => {
-  localCache.setCache('isRemPwd', newValue)
-})
+  localCache.setCache("isRemPwd", newValue);
+});
 
-const accountRef = ref<InstanceType<typeof paneAccount>>()
+const accountRef = ref<InstanceType<typeof paneAccount>>();
 
 function handleLoginBtnClick() {
-  if (activeName.value === 'account') {
-    accountRef.value?.loginAction(isRemPwd.value)
+  if (activeName.value === "account") {
+    accountRef.value?.loginAction(isRemPwd.value);
   } else {
-    console.log('用户在进行手机登录')
+    console.log("用户在进行手机登录");
   }
 }
-
-
 </script>
 
 <style lang="less" scoped>

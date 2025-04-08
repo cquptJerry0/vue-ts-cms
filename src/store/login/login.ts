@@ -4,6 +4,7 @@ import type { IAccount } from "@/types";
 import { localCache } from "@/utils/cache";
 import router from "@/router";
 import { LOGIN_TOKEN } from "@/global/constants";
+import { mapMenusToRoutes } from "@/utils/map-menus";
 
 interface ILoginState {
   token: string;
@@ -39,13 +40,28 @@ const useLoginStore = defineStore("login", {
       const userMenusResult = await getUserMenusByRoleId(this.userInfo.role.id);
       const userMenus = userMenusResult.data;
       this.userMenus = userMenus;
-     
 
       // 4.进行本地缓存
       localCache.setCache("userMenus", userMenus);
 
       // 5.页面跳转(main页面)
       router.push("/main");
+    },
+
+    loadLocalCacheAction() {
+      // 1.用户进行刷新默认加载数据
+      const token = localCache.getCache(LOGIN_TOKEN);
+      const userInfo = localCache.getCache("userInfo");
+      const userMenus = localCache.getCache("userMenus");
+      if (token && userInfo && userMenus) {
+        this.token = token;
+        this.userInfo = userInfo;
+        this.userMenus = userMenus;
+
+        // 2.动态添加路由
+        const routes = mapMenusToRoutes(userMenus);
+        routes.forEach((route) => router.addRoute("main", route));
+      }
     },
   },
 });

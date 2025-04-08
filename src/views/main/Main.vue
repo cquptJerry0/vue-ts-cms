@@ -2,7 +2,7 @@
   <div class="main">
     <el-container class="main-content">
       <el-aside width="200px">
-        <main-menu></main-menu>
+        <main-menu :is-fold="isFold"></main-menu>
       </el-aside>
       <el-container>
         <el-header height="50px">

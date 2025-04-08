@@ -5,7 +5,7 @@
       <h2 v-show="!isFold" class="title">cms-vue-ts</h2>
     </div>
     <div class="menu">
-      <el-menu default-active="2" @open="handleOpen" @close="handleClose" text-color="#b7bdc3" active-text-color="#fff"
+      <el-menu :default-active="defaultActive" :collapse="isFold" text-color="#b7bdc3" active-text-color="#fff"
         background-color="#001529">
         <template v-for="item in userMenus" :key="item.id">
           <el-sub-menu :index="item.id">
@@ -17,7 +17,7 @@
             </template>
 
             <template v-for="subitem in item.children" :key="subitem.id">
-              <el-menu-item :index="subitem.id">
+              <el-menu-item :index="subitem.id" @click="handleItemClick(subitem)">
                 {{ subitem.name }}
               </el-menu-item>
             </template>
@@ -29,16 +29,38 @@
 </template>
 
 <script lang="ts" setup>
+import { computed } from 'vue'
+import { mapPathToMenu } from '@/utils/map-menus';
 import useLoginStore from "@/store/login/login";
-const handleOpen = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath);
-};
-const handleClose = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath);
-};
+import { useRoute, useRouter } from 'vue-router'
+// 1.定义props
+defineProps(
+  {
+    isFold: {
+      type: Boolean,
+      default: false
+    }
+  }
+)
 
+// 1.获取动态的菜单
 const loginStore = useLoginStore();
 const userMenus = loginStore.userMenus;
+
+// 2.监听item的点击
+const router = useRouter()
+function handleItemClick(item: any) {
+  const url = item.url
+  router.push(url)
+}
+
+// 3.ElMenu的默认菜单
+const route = useRoute()
+const defaultActive = computed(() => {
+  const pathMenu = mapPathToMenu(route.path, userMenus)
+  return pathMenu?.id || ''
+})
+
 </script>
 
 <style lang="less" scoped>

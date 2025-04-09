@@ -7,7 +7,7 @@
 <script setup lang="ts"></script>
 
 <style lang="less" scoped>
-.dashboard {
-  color: red;
-}
+  .dashboard {
+    color: red;
+  }
 </style>

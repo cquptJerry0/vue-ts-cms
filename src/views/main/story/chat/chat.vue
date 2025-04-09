@@ -7,6 +7,6 @@
 <script setup lang="ts" name="chat"></script>
 
 <style scoped>
-.chat {
-}
+  .chat {
+  }
 </style>

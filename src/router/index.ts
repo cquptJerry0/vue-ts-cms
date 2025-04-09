@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import { localCache } from "@/utils/cache";
 import { LOGIN_TOKEN } from "@/global/constants";
-
+import { firstMenu } from "@/utils/map-menus";
 const router = createRouter({
   history: createWebHashHistory(),
   // 映射关系: path => component
@@ -16,7 +16,9 @@ const router = createRouter({
     },
     {
       path: "/main",
+      name: "main",
       component: () => import("@/views/main/main.vue"),
+      children: [],
     },
     {
       path: "/:pathMatch(.*)",
@@ -39,7 +41,16 @@ router.beforeEach((to, from, next) => {
       });
     } else {
       // 4. 有 token 且已登录，正常放行
-      next();
+      // 新增: 如果访问的是/main, 重定向第一个菜单
+      // 确保 firstMenu 存在且有 url 属性
+      if (to.path === "/main" && firstMenu && firstMenu.url) {
+        // 输出日志，便于调试
+        console.log("重定向到:", firstMenu.url);
+        next({ path: firstMenu.url });
+      } else {
+        // 如果条件不满足，仍然要放行
+        next();
+      }
     }
   } else {
     // 5. 非认证路由直接放行（如登录页、公开页面）

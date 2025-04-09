@@ -7,6 +7,6 @@
 <script setup lang="ts" name="menu"></script>
 
 <style scoped>
-.menu {
-}
+  .menu {
+  }
 </style>

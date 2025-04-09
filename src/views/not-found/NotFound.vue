@@ -4,12 +4,10 @@
   </div>
 </template>
 
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <style lang="less" scoped>
-.not-found {
-  color: purple;
-}
+  .not-found {
+    color: purple;
+  }
 </style>

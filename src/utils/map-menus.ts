@@ -51,9 +51,28 @@ export function mapPathToMenu(path: string, userMenus: any[]) {
   for (const menu of userMenus) {
     for (const submenu of menu.children) {
       if (submenu.url === path) {
-        console.log(submenu);
         return submenu;
       }
     }
   }
+}
+
+interface IBreadcrumb {
+  name: string;
+  path: string;
+}
+
+export function mapPathToBreadcrumb(path: string, userMenus: any[]) {
+  // 1.定义面包屑
+  const breadcrumbs: IBreadcrumb[] = [];
+  // 2.遍历获取面包屑
+  for (const menu of userMenus) {
+    for (const submenu of menu.children) {
+      if (submenu.url === path) {
+        breadcrumbs.push({ name: menu.name, path: menu.url });
+        breadcrumbs.push({ name: submenu.name, path: submenu.url });
+      }
+    }
+  }
+  return breadcrumbs;
 }

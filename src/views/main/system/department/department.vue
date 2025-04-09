@@ -7,6 +7,6 @@
 <script setup lang="ts" name="department"></script>
 
 <style scoped>
-.department {
-}
+  .department {
+  }
 </style>

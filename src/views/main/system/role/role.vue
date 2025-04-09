@@ -7,7 +7,7 @@
 <script setup lang="ts"></script>
 
 <style lang="less" scoped>
-.role {
-  color: red;
-}
+  .role {
+    color: red;
+  }
 </style>

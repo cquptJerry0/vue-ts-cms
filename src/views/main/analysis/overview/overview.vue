@@ -7,7 +7,7 @@
 <script setup lang="ts"></script>
 
 <style lang="less" scoped>
-.overview {
-  color: red;
-}
+  .overview {
+    color: red;
+  }
 </style>

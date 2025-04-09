@@ -44,6 +44,10 @@ const useLoginStore = defineStore("login", {
       // 4.进行本地缓存
       localCache.setCache("userMenus", userMenus);
 
+      // 4.动态添加路由
+      const routes = mapMenusToRoutes(userMenus);
+      routes.forEach((route) => router.addRoute("main", route));
+
       // 5.页面跳转(main页面)
       router.push("/main");
     },

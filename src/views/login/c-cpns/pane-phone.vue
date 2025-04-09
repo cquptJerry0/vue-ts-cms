@@ -7,7 +7,7 @@
 <script setup lang="ts"></script>
 
 <style lang="less" scoped>
-.panel-phone {
-  color: red;
-}
+  .panel-phone {
+    color: red;
+  }
 </style>

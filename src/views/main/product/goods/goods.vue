@@ -7,6 +7,6 @@
 <script setup lang="ts" name="goods"></script>
 
 <style scoped>
-.goods {
-}
+  .goods {
+  }
 </style>

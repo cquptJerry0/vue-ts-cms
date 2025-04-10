@@ -51,24 +51,28 @@
 <script lang="ts" setup>
 import { reactive, ref } from 'vue'
 import type { ElForm } from 'element-plus'
+// 自定义事件
+const emit = defineEmits(['queryClick', 'resetClick'])
+
+// 定义form的数据
 const searchForm = reactive({
   name: '',
   realName: '',
   cellphone: '',
-  enable: 1,
-  createAt: [],
+  enable: '',
+  createAt: '',
 })
 
 // 重置操作
 const formRef = ref<InstanceType<typeof ElForm>>()
 const onReset = () => {
-  console.log(formRef.value)
   formRef.value?.resetFields()
+  emit('resetClick')
 }
 
 // 搜索操作
 const onSubmit = () => {
-  console.log('submit!')
+  emit('queryClick', searchForm)
 }
 </script>
 

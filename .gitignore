@@ -1,3 +1,10 @@
+# 忽略中文文件夹
+*.zh-CN
+# 忽略vscode
+/.vscode
+# 忽略开发笔记
+/开发笔记
+
 # Logs
 logs
 *.log
@@ -18,8 +25,7 @@ coverage
 /cypress/screenshots/
 
 # Editor directories and files
-.vscode/*
-!.vscode/extensions.json
+.vscode
 .idea
 *.suo
 *.ntvs*

@@ -1,0 +1,26 @@
+{
+  "name": "cms-app",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "run-p type-check \"build-only {@}\" --",
+    "preview": "vite preview",
+    "build-only": "vite build",
+    "type-check": "vue-tsc --build",
+    "lint": "eslint . --fix",
+    "format": "prettier --write src/"
+  },
+  "dependencies": {
+    "@cms/utils": "workspace:*",
+    "normalize": "^0.3.1"
+  },
+  "devDependencies": {
+    "@iconify-json/ep": "^1.2.2",
+    "unplugin-auto-import": "^19.1.2",
+    "unplugin-icons": "^22.1.0",
+    "unplugin-vue-components": "^28.4.1",
+    "vite-plugin-vue-devtools": "^7.7.2"
+  }
+}

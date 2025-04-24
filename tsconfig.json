@@ -1,11 +1,32 @@
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
+  "compilerOptions": {
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "strict": true,
+    "jsx": "preserve",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "lib": ["ESNext", "DOM"],
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["apps/cms/src/*"],
+      "@cms/*": ["packages/*/src"]
     },
-    {
-      "path": "./tsconfig.app.json"
-    }
-  ]
+    "types": ["node", "vue", "element-plus/global"]
+  },
+  "include": [
+    "apps/*/src/**/*.ts",
+    "apps/*/src/**/*.d.ts",
+    "apps/*/src/**/*.tsx",
+    "apps/*/src/**/*.vue",
+    "packages/*/src/**/*.ts",
+    "packages/*/src/**/*.d.ts"
+  ],
+  "exclude": ["node_modules", "dist", "**/*.js"]
 }
